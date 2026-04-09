@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useMotionValue, useInView, animate } from "motion/react";
 import { 
   Camera, 
   Video, 
@@ -19,7 +19,22 @@ import {
   Users,
   MessageCircle
 } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+
+function Counter({ value }: { value: number }) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (inView) {
+      animate(count, value, { duration: 2, ease: "easeOut" });
+    }
+  }, [inView, value, count]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+}
 
 export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -227,7 +242,9 @@ export default function App() {
             whileHover={{ y: -5 }}
             className="col-span-1 md:col-span-1 row-span-1 glass rounded-3xl p-8 flex flex-col items-center justify-center text-center"
           >
-            <div className="text-5xl font-display mb-2">150+</div>
+            <div className="text-5xl font-display mb-2">
+              <Counter value={150} />+
+            </div>
             <div className="text-xs uppercase tracking-widest text-brand-secondary/40">Projetos Entregues</div>
           </motion.div>
 
