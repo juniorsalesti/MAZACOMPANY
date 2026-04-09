@@ -23,10 +23,13 @@ import { useRef } from "react";
 
 export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
+  const { scrollY, scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
+
+  const logoHeight = useTransform(scrollY, [0, 100], [80, 56]); // De 80px para 56px
+  const logoHeightMobile = useTransform(scrollY, [0, 100], [72, 48]); // De 72px para 48px
 
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0.95]);
@@ -81,11 +84,22 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
+            className="flex items-center"
           >
-            <img 
+            {/* Logo para Desktop */}
+            <motion.img 
               src="https://i.ibb.co/mCfzLPDy/Prancheta-1.png" 
               alt="MAZA COMPANY" 
-              className="h-16 md:h-16 w-auto object-contain"
+              style={{ height: logoHeight }}
+              className="hidden md:block w-auto object-contain"
+              referrerPolicy="no-referrer"
+            />
+            {/* Logo para Mobile */}
+            <motion.img 
+              src="https://i.ibb.co/mCfzLPDy/Prancheta-1.png" 
+              alt="MAZA COMPANY" 
+              style={{ height: logoHeightMobile }}
+              className="block md:hidden w-auto object-contain"
               referrerPolicy="no-referrer"
             />
           </motion.div>
