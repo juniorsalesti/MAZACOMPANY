@@ -131,9 +131,9 @@ export default function App() {
             <span className="inline-block px-4 py-1 border border-white/20 rounded-full text-[10px] uppercase tracking-[0.3em] mb-6 backdrop-blur-sm">
               Filmmaker & Fotógrafo Premium
             </span>
-            <h1 className="text-4xl md:text-8xl font-display font-medium leading-[0.9] tracking-tight mb-8">
-              Transformamos ideias em <br />
-              <span className="italic text-brand-secondary/80">realidade visual</span>
+            <h1 className="text-3xl md:text-8xl font-display font-medium leading-[0.9] tracking-tight mb-8">
+              Transformamos ideias <br />
+              <span className="italic text-brand-secondary/80">em realidade visual</span>
             </h1>
             <p className="text-base md:text-xl text-brand-secondary/60 max-w-2xl mb-10 font-light leading-relaxed">
               Produções audiovisuais sofisticadas que conectam, engajam e fortalecem marcas através de um olhar cinematográfico exclusivo.
@@ -284,9 +284,6 @@ export default function App() {
                   <p className="text-sm text-brand-secondary/70 font-light leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     {service.description}
                   </p>
-                  <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest group-hover:gap-4 transition-all">
-                    Saiba Mais <ArrowRight className="w-4 h-4" />
-                  </button>
                 </div>
               </motion.div>
             ))}
